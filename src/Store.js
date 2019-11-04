@@ -7,7 +7,8 @@ function Store({children}){
      const initialState = { 
         cart:[],
         cartCount:0,
-        add: add
+        add: add,
+        remove: remove
         }
   
     //initiate app state with initialstates
@@ -50,6 +51,15 @@ function Store({children}){
         console.log("count is: ", count)
         return count;
     }
+
+    function remove(index){
+
+        const cartList = appstate.cart;
+        cartList.splice(index,1);
+    
+        setState({...appstate, cart:cartList, cartCount:getCartCount()});
+    }
+
 
     return(
         <productContext.Provider value={appstate}>

@@ -18,7 +18,12 @@ button{
     background: #dadfe1;
     padding: 5px;
     cursor: pointer;
-  }
+}
+
+button:active{
+    transform: scale(0.9);
+}
+
 .header button{
     margin: 5px 5px 5px 5px;
     border: none;
@@ -37,4 +42,26 @@ button{
 
 li{
     margin-top: 10px;
+}
+
+th{
+    text-align: left;
   }
+  
+.p{
+    padding: 15px;
+}
+
+.flex{
+    display: flex;
+  }
+  
+.flex *{
+    margin-left: 10px;
+}
+
+#empty_cart{
+    position: absolute;
+    top: 50%;
+    left: 45%;
+}
