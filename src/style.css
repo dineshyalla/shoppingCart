@@ -30,6 +30,11 @@ button{
     font-size: 14px;
     text-transform: uppercase;
   }
+
 .header-buttons{
     float: right;
 }
+
+li{
+    margin-top: 10px;
+  }
