@@ -36,7 +36,6 @@ function Store({children}){
         }
         let cnt = getCartCount();
         setState({...appstate, cart:newList, cartCount: cnt});
-        console.log("State after adding is: "+  JSON.stringify(appstate));
     }
 
     // function to get the number of products in cart
@@ -48,7 +47,6 @@ function Store({children}){
           });      
         }
 
-        console.log("count is: ", count)
         return count;
     }
 

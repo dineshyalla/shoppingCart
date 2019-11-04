@@ -1,38 +1,25 @@
 import React, { useState, useEffect, useContext } from 'react';
 import productContext from '../product_context';
-
+import Card from './Card';
+import productlist from '../shoppingList';
 function Products(){
 
     const [ Products, setProducts] = useState([]);
 
     useEffect(() => {
-        const productList = [
-            {name:'book', id:1}, {name:'laptop', id:2}, {name:'game console', id:3}, {name:'radio', id:4}, {name:'notenook', id:56}
-        ]
+        const productList = productlist;
         setProducts(productList);
     }, [])
-
-    const prodlist = Products.map((item,index) => {
-        return <li key={index}>id:{item.id} | product name: <strong>{item.name}</strong>  <Addbutton item={item}/></li>
-      })
+    
+    const prodlist = Products.map((item, index) => <Card key={index} item={item}/>)
 
     return ( 
         <ul>
-            {prodlist}
+            <div className="row">
+                {prodlist}
+            </div>
+            
         </ul>);
 };
-
-function Addbutton(props){
-
-    const state = useContext(productContext);
-    return(
-            <button onClick={() => {
-                state.add(props.item)
-            }}>
-              add to cart
-            </button>    
-    )
-  }
-
 
 export default Products;
