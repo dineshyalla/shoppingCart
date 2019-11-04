@@ -4,6 +4,8 @@ import productContext from '../product_context';
 
 function Card(props){
 
+    const productState = useContext(productContext);
+
     const obj = {
         countx: 0,
         maxQty: props.item.qty,
@@ -12,7 +14,7 @@ function Card(props){
   
     const [state, setState] = useState(obj);
     
-    const [ item, setItem] = useState(props.item);
+    const [item, setItem] = useState(props.item);
     let cnt;
 
     const modifyQty = (value) => {
@@ -26,8 +28,10 @@ function Card(props){
         let tempQty = state.maxQty - item.count;
         if(tempQty<1){
             setState({...state, countx: 0, maxQty: tempQty, disabled: true}); 
+           // productState.modifyProdQty(item.id, 0)
         } else {
             setState({...state, countx: 0, maxQty: tempQty});
+            //productState.modifyProdQty(item.id, tempQty)
         }
 
     }
@@ -38,7 +42,7 @@ function Card(props){
                 <p>{props.item.name}</p>
                 <p><strong>Price</strong>: {props.item.price}</p>
                 Qty: <input type="number" min={0} max={state.maxQty} value={state.countx} onChange={(e) => modifyQty(e.currentTarget.value)}/>
-                <Addbutton item={item} setCount={(item) => modifyCnt(item)} disabled={state.disabled}/>
+                <Addbutton item={item} setCount={(item) => modifyCnt(item)} disabled={state.disabled} />
                 </div>
             </div>
         

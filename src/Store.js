@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import productContext from './product_context';
+import productlist from './shoppingList';
 
 function Store({children}){
 
      // the app's initial state
      const initialState = { 
         cart:[],
+        products: productlist,
         cartCount:0,
         add: add,
-        remove: remove
+        remove: remove,
+        modifyProdQty: modifyProdQty
         }
   
     //initiate app state with initialstates
@@ -56,6 +59,15 @@ function Store({children}){
         cartList.splice(index,1);
     
         setState({...appstate, cart:cartList, cartCount:getCartCount()});
+    }
+
+    function modifyProdQty(index, value){
+
+        let prodList = appstate.products;
+        prodList[index].qty = value;
+    
+        console.log("prodList[index]", prodList[index]);
+        setState({...appstate, products: prodList});
     }
 
 
