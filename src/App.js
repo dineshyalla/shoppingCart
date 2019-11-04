@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './style.css';
 import { BrowserRouter as Router, Route, Switch,Link } from 'react-router-dom';
+import productContext from './product_context';
 import Products from './components/Products';
 import Cart from './components/Cart';
 
 function App() {
+
+  const { cartCount } = useContext(productContext);
+
   return (
     <div>
       <header className="header">
@@ -13,7 +17,7 @@ function App() {
                   <button>Products</button>
           </Link>
           <Link to='/cart'>
-                  <button>Cart</button>
+                  <button>{'cart('+cartCount+')'}</button>
           </Link>
         </span> 
       </header>

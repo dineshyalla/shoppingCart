@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import productContext from '../product_context';
 
 function Products(){
 
@@ -11,8 +12,8 @@ function Products(){
         setProducts(productList);
     }, [])
 
-    const prodlist = Products.map((i,index) => {
-        return <li key={index}>id:{i.id} | product name: <strong>{i.name}</strong>  <Addbutton pd={i}/></li>
+    const prodlist = Products.map((item,index) => {
+        return <li key={index}>id:{item.id} | product name: <strong>{item.name}</strong>  <Addbutton item={item}/></li>
       })
 
     return ( 
@@ -23,8 +24,11 @@ function Products(){
 
 function Addbutton(props){
 
+    const state = useContext(productContext);
     return(
-            <button>
+            <button onClick={() => {
+                state.add(props.item)
+            }}>
               add to cart
             </button>    
     )

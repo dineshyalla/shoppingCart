@@ -6,11 +6,50 @@ function Store({children}){
      // the app's initial state
      const initialState = { 
         cart:[],
-        cartCount:0
+        cartCount:0,
+        add: add
         }
   
     //initiate app state with initialstates
     const [ appstate, setState ] = useState(initialState);
+
+    // function to add product to the cart
+    function add(prod){
+        let newList = appstate.cart;
+
+        const newItem = {
+            count:1,
+            id:prod.id,
+            name:prod.name
+        }
+
+        const filteredList = newList.filter(index =>{
+            return index.id === prod.id;
+        });
+
+        if(filteredList.length > 0){
+            const pos = newList.map(index => { return index.id; }).indexOf(prod.id);
+            newList[pos].count += 1;
+        } else{
+            newList.push(newItem);
+        }
+        let cnt = getCartCount();
+        setState({...appstate, cart:newList, cartCount: cnt});
+        console.log("State after adding is: "+  JSON.stringify(appstate));
+    }
+
+    // function to get the number of products in cart
+    function getCartCount(){
+        let count = 0;
+        if(appstate.cart.length > 0){
+          appstate.cart.forEach(item => {
+            count += item.count;
+          });      
+        }
+
+        console.log("count is: ", count)
+        return count;
+    }
 
     return(
         <productContext.Provider value={appstate}>
