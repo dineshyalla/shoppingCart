@@ -19,7 +19,7 @@ function Store({children}){
         let newList = appstate.cart;
 
         const newItem = {
-            count:1,
+            count:prod.count,
             id:prod.id,
             name:prod.name
         }
